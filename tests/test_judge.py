@@ -1,7 +1,6 @@
 import json
 from unittest.mock import patch
 
-import pytest
 
 from skate.judge import JudgeResult, _build_prompt, _parse_response, run_judge
 from skate.models import ModelResult
