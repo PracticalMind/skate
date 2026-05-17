@@ -12,10 +12,24 @@ logging.getLogger("LiteLLM").addFilter(
 from assayer.config import get_api_key, set_api_key, show_config
 
 _KNOWN_MODELS: dict[str, list[str]] = {
-    "openai": ["gpt-4o", "gpt-4o-mini", "gpt-4-turbo", "o1-mini"],
-    "anthropic": ["claude-opus-4-5", "claude-sonnet-4-5", "claude-haiku-4-5-20251001"],
-    "gemini": ["gemini-1.5-pro", "gemini-1.5-flash"],
-    "ollama": ["ollama/llama3", "ollama/mistral", "ollama/phi3"],
+    "openai": [
+        "gpt-5.5", "gpt-5.5-pro",
+        "gpt-5.4", "gpt-5.4-pro", "gpt-5.4-mini", "gpt-5.4-nano",
+        "gpt-5.2", "gpt-5", "gpt-5-mini", "gpt-5-nano",
+        "gpt-4.1", "gpt-4.1-mini", "gpt-4.1-nano",
+        "gpt-4o", "gpt-4o-mini",
+        "o3", "o3-mini", "o4-mini",
+    ],
+    "anthropic": [
+        "claude-opus-4-7", "claude-sonnet-4-6", "claude-haiku-4-5-20251001",
+        "claude-opus-4-6", "claude-sonnet-4-5", "claude-opus-4-5",
+    ],
+    "gemini": [
+        "gemini-3.1-pro-preview", "gemini-3.1-flash-lite", "gemini-3-flash-preview",
+        "gemini-2.5-pro", "gemini-2.5-flash", "gemini-2.5-flash-lite",
+        "gemini-2.0-flash", "gemini-2.0-flash-lite",
+    ],
+    "ollama": ["ollama/llama4-scout", "ollama/llama3.2", "ollama/qwen3", "ollama/gemma4", "ollama/mistral", "ollama/deepseek-r1", "ollama/phi4"],
 }
 
 
