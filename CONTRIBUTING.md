@@ -1,13 +1,13 @@
-# Contributing to skate
+# Contributing to assayer
 
-Thank you for your interest in contributing to **skate**! This document covers how to set up your development environment, the project structure, and the pull request process.
+Thank you for your interest in contributing to **assayer**! This document covers how to set up your development environment, the project structure, and the pull request process.
 
 ## Development Setup
 
 1. **Fork and clone** the repository:
    ```bash
-   git clone https://github.com/PracticalMind/skate.git
-   cd skate
+   git clone https://github.com/PracticalMind/assayer.git
+   cd assayer
    ```
 
 2. **Create a virtual environment** and install dependencies:
@@ -19,26 +19,26 @@ Thank you for your interest in contributing to **skate**! This document covers h
 
 3. **Verify** the installation:
    ```bash
-   skate --help
+   assayer --help
    ```
 
 ## Project Structure
 
-- `skate/cli/` — CLI entry point and command definitions (`main.py`).
-- `skate/providers/` — Individual LLM provider implementations (OpenAI, Anthropic, Gemini, Ollama).
-- `skate/runner.py` — Async orchestrator for running parallel prompts.
-- `skate/scorer.py` — Similarity and readability scoring logic.
-- `skate/judge.py` — LLM-as-judge evaluation logic.
-- `skate/renderer.py` — Terminal UI rendering using `rich`.
-- `tests/` — Unit and integration tests mirroring the `skate/` structure.
+- `assayer/cli/` — CLI entry point and command definitions (`main.py`).
+- `assayer/providers/` — Individual LLM provider implementations (OpenAI, Anthropic, Gemini, Ollama).
+- `assayer/runner.py` — Async orchestrator for running parallel prompts.
+- `assayer/scorer.py` — Similarity and readability scoring logic.
+- `assayer/judge.py` — LLM-as-judge evaluation logic.
+- `assayer/renderer.py` — Terminal UI rendering using `rich`.
+- `tests/` — Unit and integration tests mirroring the `assayer/` structure.
 
 ## How to Add a New Provider
 
-1. Create a new file in `skate/providers/<name>.py`.
+1. Create a new file in `assayer/providers/<name>.py`.
 2. Inherit from `BaseProvider` and implement the `async def run(...)` method.
-3. Ensure the provider handles API keys via `skate.config.get_api_key`.
-4. Register the new provider in `skate/runner.py` inside the `_make_provider` function.
-5. Add the supported model identifiers to `_KNOWN_MODELS` in `skate/cli/main.py`.
+3. Ensure the provider handles API keys via `assayer.config.get_api_key`.
+4. Register the new provider in `assayer/runner.py` inside the `_make_provider` function.
+5. Add the supported model identifiers to `_KNOWN_MODELS` in `assayer/cli/main.py`.
 6. Create a corresponding test file in `tests/test_providers.py` or a new `tests/test_<name>.py`.
 
 ## Testing Requirements

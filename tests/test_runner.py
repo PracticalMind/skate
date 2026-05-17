@@ -2,12 +2,12 @@ import asyncio
 
 import pytest
 
-from skate.models import ModelResult
-from skate.providers.anthropic import AnthropicProvider
-from skate.providers.gemini import GeminiProvider
-from skate.providers.ollama import OllamaProvider
-from skate.providers.openai import OpenAIProvider
-from skate.runner import _make_provider, _run_one, run_all
+from assayer.models import ModelResult
+from assayer.providers.anthropic import AnthropicProvider
+from assayer.providers.gemini import GeminiProvider
+from assayer.providers.ollama import OllamaProvider
+from assayer.providers.openai import OpenAIProvider
+from assayer.runner import _make_provider, _run_one, run_all
 
 
 @pytest.mark.parametrize(
@@ -116,7 +116,7 @@ async def test_run_one_records_timeout(monkeypatch):
         )
 
     monkeypatch.setattr(OpenAIProvider, "run", _slow_run)
-    monkeypatch.setattr("skate.runner._TIMEOUT", 0.05)
+    monkeypatch.setattr("assayer.runner._TIMEOUT", 0.05)
 
     result = await _run_one("gpt-4o-mini", "test", None, None, None)
 

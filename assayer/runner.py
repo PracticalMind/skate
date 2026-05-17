@@ -1,11 +1,11 @@
 import asyncio
 
-from skate.models import ModelResult
-from skate.providers.anthropic import AnthropicProvider
-from skate.providers.base import BaseProvider
-from skate.providers.gemini import GeminiProvider
-from skate.providers.ollama import OllamaProvider
-from skate.providers.openai import OpenAIProvider
+from assayer.models import ModelResult
+from assayer.providers.anthropic import AnthropicProvider
+from assayer.providers.base import BaseProvider
+from assayer.providers.gemini import GeminiProvider
+from assayer.providers.ollama import OllamaProvider
+from assayer.providers.openai import OpenAIProvider
 
 
 _TIMEOUT = 30.0

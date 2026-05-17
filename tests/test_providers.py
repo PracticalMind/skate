@@ -4,10 +4,10 @@ from pathlib import Path
 import httpx
 import pytest
 
-from skate.providers.anthropic import AnthropicProvider
-from skate.providers.gemini import GeminiProvider
-from skate.providers.ollama import OllamaProvider, is_running
-from skate.providers.openai import OpenAIProvider
+from assayer.providers.anthropic import AnthropicProvider
+from assayer.providers.gemini import GeminiProvider
+from assayer.providers.ollama import OllamaProvider, is_running
+from assayer.providers.openai import OpenAIProvider
 
 _NONEXISTENT_CONFIG = Path("/nonexistent")
 
@@ -22,7 +22,7 @@ _NONEXISTENT_CONFIG = Path("/nonexistent")
 )
 async def test_missing_api_key(provider_cls, env_var, model, monkeypatch):
     monkeypatch.delenv(env_var, raising=False)
-    monkeypatch.setattr("skate.config._CONFIG_PATH", _NONEXISTENT_CONFIG)
+    monkeypatch.setattr("assayer.config._CONFIG_PATH", _NONEXISTENT_CONFIG)
 
     result = await provider_cls(model).run("hello")
 
@@ -41,7 +41,7 @@ async def test_ollama_not_running(monkeypatch):
         async def __aexit__(self, *args):
             pass
 
-    monkeypatch.setattr("skate.providers.ollama.httpx.AsyncClient", _FailClient)
+    monkeypatch.setattr("assayer.providers.ollama.httpx.AsyncClient", _FailClient)
 
     result = await OllamaProvider("ollama/llama3").run("hello")
 

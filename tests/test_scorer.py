@@ -2,8 +2,8 @@ from unittest.mock import patch
 
 import pytest
 
-from skate.models import ModelResult
-from skate.scorer import compute_similarity, readability_stats
+from assayer.models import ModelResult
+from assayer.scorer import compute_similarity, readability_stats
 
 
 def _result(model: str, output: str, error: str | None = None) -> ModelResult:
@@ -20,7 +20,7 @@ def _result(model: str, output: str, error: str | None = None) -> ModelResult:
 
 def test_compute_similarity_two_models():
     results = [_result("gpt-4o", "Hello world"), _result("claude", "Hello world")]
-    with patch("skate.scorer._get_model") as mock_get:
+    with patch("assayer.scorer._get_model") as mock_get:
         import numpy as np
 
         vec = np.ones(384, dtype="float32")
@@ -38,7 +38,7 @@ def test_compute_similarity_three_models():
         _result("claude", "Hello"),
         _result("gemini", "Hello"),
     ]
-    with patch("skate.scorer._get_model") as mock_get:
+    with patch("assayer.scorer._get_model") as mock_get:
         import numpy as np
 
         vec = np.ones(384, dtype="float32")

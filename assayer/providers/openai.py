@@ -2,12 +2,12 @@ import time
 
 import litellm
 
-from skate.config import get_api_key
-from skate.models import ModelResult
-from skate.providers.base import BaseProvider
+from assayer.config import get_api_key
+from assayer.models import ModelResult
+from assayer.providers.base import BaseProvider
 
 
-class GeminiProvider(BaseProvider):
+class OpenAIProvider(BaseProvider):
     def __init__(self, model: str) -> None:
         self.model = model
 
@@ -18,7 +18,7 @@ class GeminiProvider(BaseProvider):
         temperature: float | None = None,
         max_tokens: int | None = None,
     ) -> ModelResult:
-        api_key = get_api_key("GEMINI_API_KEY")
+        api_key = get_api_key("OPENAI_API_KEY")
         if not api_key:
             return ModelResult(
                 model=self.model,
@@ -27,7 +27,7 @@ class GeminiProvider(BaseProvider):
                 tokens_output=0,
                 latency_seconds=0.0,
                 cost_usd=0.0,
-                error="GEMINI_API_KEY is not set",
+                error="OPENAI_API_KEY is not set",
             )
 
         messages: list[dict[str, str]] = []
@@ -35,11 +35,7 @@ class GeminiProvider(BaseProvider):
             messages.append({"role": "system", "content": system})
         messages.append({"role": "user", "content": prompt})
 
-        kwargs: dict = {
-            "model": f"gemini/{self.model}",
-            "messages": messages,
-            "api_key": api_key,
-        }
+        kwargs: dict = {"model": self.model, "messages": messages, "api_key": api_key}
         if temperature is not None:
             kwargs["temperature"] = temperature
         if max_tokens is not None:

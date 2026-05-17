@@ -5,8 +5,8 @@ from rich.rule import Rule
 from rich.table import Table
 from rich.text import Text
 
-from skate.judge import JudgeResult
-from skate.models import ModelResult
+from assayer.judge import JudgeResult
+from assayer.models import ModelResult
 
 console = Console()
 

@@ -3,8 +3,8 @@ import json
 
 import pytest
 
-from skate.exporter import export
-from skate.models import ModelResult
+from assayer.exporter import export
+from assayer.models import ModelResult
 
 _EXPECTED_FIELDS = {"model", "output", "tokens_input", "tokens_output", "latency_seconds", "cost_usd", "error"}
 

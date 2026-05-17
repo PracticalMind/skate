@@ -5,8 +5,8 @@ import re
 import sys
 from dataclasses import dataclass, field
 
-from skate.models import ModelResult
-from skate.runner import _make_provider
+from assayer.models import ModelResult
+from assayer.runner import _make_provider
 
 _PROMPT_TEMPLATE = """\
 You are evaluating outputs from multiple language models for the same prompt.

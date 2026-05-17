@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 
-_CONFIG_PATH = Path.home() / ".skate" / "config.json"
+_CONFIG_PATH = Path.home() / ".assayer" / "config.json"
 
 _KNOWN_KEYS = ("OPENAI_API_KEY", "ANTHROPIC_API_KEY", "GEMINI_API_KEY")
 

@@ -2,8 +2,8 @@ import json
 from unittest.mock import patch
 
 
-from skate.judge import JudgeResult, _build_prompt, _parse_response, run_judge
-from skate.models import ModelResult
+from assayer.judge import JudgeResult, _build_prompt, _parse_response, run_judge
+from assayer.models import ModelResult
 
 
 def _result(model: str, output: str, error: str | None = None) -> ModelResult:
@@ -91,7 +91,7 @@ async def test_run_judge_success():
             cost_usd=0.001,
         )
 
-    with patch("skate.providers.openai.OpenAIProvider.run", _fake_run):
+    with patch("assayer.providers.openai.OpenAIProvider.run", _fake_run):
         judge_result = await run_judge(
             "What is 2+2?",
             [_result("gpt-4o", "4"), _result("claude", "Four")],
@@ -119,7 +119,7 @@ async def test_run_judge_with_criteria():
             cost_usd=0.001,
         )
 
-    with patch("skate.providers.openai.OpenAIProvider.run", _fake_run):
+    with patch("assayer.providers.openai.OpenAIProvider.run", _fake_run):
         judge_result = await run_judge(
             "What is 2+2?",
             [_result("gpt-4o", "4"), _result("claude", "Four")],
@@ -151,7 +151,7 @@ async def test_run_judge_handles_provider_error(capsys):
             error="Rate limit",
         )
 
-    with patch("skate.providers.openai.OpenAIProvider.run", _fail):
+    with patch("assayer.providers.openai.OpenAIProvider.run", _fail):
         judge_result = await run_judge(
             "prompt", [_result("gpt-4o", "a"), _result("claude", "b")], "gpt-4o"
         )
@@ -171,7 +171,7 @@ async def test_run_judge_handles_bad_json(capsys):
             cost_usd=0.0,
         )
 
-    with patch("skate.providers.openai.OpenAIProvider.run", _bad_json):
+    with patch("assayer.providers.openai.OpenAIProvider.run", _bad_json):
         judge_result = await run_judge(
             "prompt", [_result("gpt-4o", "a"), _result("claude", "b")], "gpt-4o"
         )

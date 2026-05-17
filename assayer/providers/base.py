@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from skate.models import ModelResult
+    from assayer.models import ModelResult
 
 
 class BaseProvider(ABC):

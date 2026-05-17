@@ -2,9 +2,9 @@ import time
 
 import litellm
 
-from skate.config import get_api_key
-from skate.models import ModelResult
-from skate.providers.base import BaseProvider
+from assayer.config import get_api_key
+from assayer.models import ModelResult
+from assayer.providers.base import BaseProvider
 
 
 class AnthropicProvider(BaseProvider):

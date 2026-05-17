@@ -1,17 +1,17 @@
-# skate
+# assayer
 
-Run a prompt across multiple LLMs and compare outputs side by side in the terminal.
+Send a prompt to multiple language models in parallel and compare their outputs in the terminal. Useful for evaluating which model handles a given task better, measuring semantic similarity between responses, or running an LLM-as-judge evaluation — without leaving the shell.
 
 ## Installation
 
 ```bash
-pip install skate
+pip install assayer
 ```
 
 Similarity scoring requires the optional `score` extra:
 
 ```bash
-pip install "skate[score]"
+pip install "assayer[score]"
 ```
 
 Python 3.11 or newer is required.
@@ -20,8 +20,6 @@ Python 3.11 or newer is required.
 
 ## Supported Providers
 
-Skate supports multiple LLM providers through a unified interface:
-
 - **OpenAI**: All GPT models.
 - **Anthropic**: Claude 4.5 models (Opus, Sonnet, Haiku).
 - **Google Gemini**: 1.5 Pro and Flash models.
@@ -29,11 +27,9 @@ Skate supports multiple LLM providers through a unified interface:
 
 ## Configuration
 
-Skate looks for API keys in environment variables or a configuration file located at `~/.skate/config.json`.
+Assayer looks for API keys in environment variables or a configuration file at `~/.assayer/config.json`.
 
 ### Environment Variables
-
-You can set your keys as standard environment variables:
 
 ```bash
 export OPENAI_API_KEY="your-key"
@@ -43,8 +39,6 @@ export GEMINI_API_KEY="your-key"
 
 ### Configuration File
 
-Alternatively, create a file at `~/.skate/config.json`:
-
 ```json
 {
   "OPENAI_API_KEY": "sk-...",
@@ -53,12 +47,12 @@ Alternatively, create a file at `~/.skate/config.json`:
 }
 ```
 
-Use `skate models check` to verify your configuration.
+Use `assayer models check` to verify your configuration.
 
 ## Quickstart
 
 ```bash
-skate run "Explain recursion in one sentence." --models gpt-4o,claude-haiku-4-5-20251001
+assayer run "Explain recursion in one sentence." --models gpt-4o,claude-haiku-4-5-20251001
 ```
 
 ## Commands
@@ -66,13 +60,13 @@ skate run "Explain recursion in one sentence." --models gpt-4o,claude-haiku-4-5-
 ### run
 
 ```bash
-skate run "prompt" --models gpt-4o,claude-sonnet-4-5
-skate run --prompt-file prompt.txt --models gpt-4o,ollama/llama3
-skate run "prompt" --models gpt-4o,claude-sonnet-4-5 --score
-skate run "prompt" --models gpt-4o,claude-sonnet-4-5 --judge gpt-4o --judge-criteria "clarity,brevity"
-skate run "prompt" --models gpt-4o,claude-sonnet-4-5 --output results.json
-skate run "prompt" --models gpt-4o,claude-sonnet-4-5 --output results.csv
-skate run "prompt with {var}" --models gpt-4o --var key=value
+assayer run "prompt" --models gpt-4o,claude-sonnet-4-5
+assayer run --prompt-file prompt.txt --models gpt-4o,ollama/llama3
+assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --score
+assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --judge gpt-4o --judge-criteria "clarity,brevity"
+assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --output results.json
+assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --output results.csv
+assayer run "prompt with {var}" --models gpt-4o --var key=value
 ```
 
 | Flag | Description |
@@ -91,19 +85,19 @@ skate run "prompt with {var}" --models gpt-4o --var key=value
 ### models
 
 ```bash
-skate models list               # list all supported model identifiers
-skate models check              # check which API keys are configured
-skate models check ollama       # check if Ollama is running and list local models
+assayer models list               # list all supported model identifiers
+assayer models check              # check which API keys are configured
+assayer models check ollama       # check if Ollama is running and list local models
 ```
 
 ### config
 
 ```bash
-skate config set OPENAI_API_KEY sk-...
-skate config show
+assayer config set OPENAI_API_KEY sk-...
+assayer config show
 ```
 
-Keys are saved to `~/.skate/config.json`. Environment variables take precedence.
+Keys are saved to `~/.assayer/config.json`. Environment variables take precedence.
 
 ## Providers
 
@@ -137,7 +131,7 @@ No API key needed. Start Ollama and use the `ollama/` prefix:
 
 ```bash
 ollama serve
-skate run "prompt" --models ollama/llama3,ollama/mistral,ollama/phi3
+assayer run "prompt" --models ollama/llama3,ollama/mistral,ollama/phi3
 ```
 
 ## Scoring
@@ -149,7 +143,7 @@ skate run "prompt" --models ollama/llama3,ollama/mistral,ollama/phi3
 `--judge <model>` sends all outputs to the specified model and asks it to pick a winner. Use `--judge-criteria` to focus the evaluation:
 
 ```bash
-skate run "Write a sorting algorithm." \
+assayer run "Write a sorting algorithm." \
   --models gpt-4o,claude-sonnet-4-5 \
   --judge gpt-4o \
   --judge-criteria "correctness,readability"

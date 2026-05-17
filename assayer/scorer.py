@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from skate.models import ModelResult
+from assayer.models import ModelResult
 
 _model = None
 
@@ -13,7 +13,7 @@ def _get_model():
         except ImportError:
             raise ImportError(
                 "sentence-transformers is required for --score. "
-                "Install it with: pip install 'skate[score]'"
+                "Install it with: pip install 'assayer[score]'"
             )
         _model = SentenceTransformer("all-MiniLM-L6-v2")
     return _model

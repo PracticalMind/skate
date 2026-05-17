@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "skate"
+name = "assayer"
 version = "0.1.0"
 description = "Run a prompt across multiple LLMs and compare outputs side by side in the terminal."
 readme = "README.md"
@@ -37,7 +37,7 @@ dev = [
 ]
 
 [project.scripts]
-skate = "skate.cli.main:cli"
+assayer = "assayer.cli.main:cli"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
