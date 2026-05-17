@@ -5,11 +5,11 @@ import sys
 import click
 import httpx
 
-logging.getLogger("LiteLLM").addFilter(
-    type("_F", (logging.Filter,), {"filter": lambda self, r: r.levelno >= logging.ERROR})()
-)
-
 from assayer.config import get_api_key, set_api_key, show_config
+
+logging.getLogger("LiteLLM").addFilter(
+    type("_F", (logging.Filter,), {"filter": lambda _, r: r.levelno >= logging.ERROR})()
+)
 
 _KNOWN_MODELS: dict[str, list[str]] = {
     "openai": [
