@@ -7,7 +7,7 @@ assayer run "Explain the difference between TCP and UDP." \
 
 # Judge with explicit evaluation criteria
 assayer run "Write a product description for wireless headphones." \
-  --models gpt-4o,claude-sonnet-4-5,gemini-1.5-pro \
+  --models gpt-4o,claude-sonnet-4-5,gemini-2.5-flash \
   --judge claude-sonnet-4-5 \
   --judge-criteria "clarity,persuasiveness,brevity"
 

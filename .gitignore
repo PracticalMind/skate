@@ -22,7 +22,7 @@ env/
 
 # Project specific
 .env
-.skate/config.json
+.assayer/config.json
 results.json
 results.csv
 .DS_Store

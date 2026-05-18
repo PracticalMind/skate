@@ -2,7 +2,7 @@
 
 # Show similarity matrix between model outputs
 assayer run "Describe the water cycle in two sentences." \
-  --models gpt-4o,claude-sonnet-4-5,gemini-1.5-flash \
+  --models gpt-4o,claude-sonnet-4-5,gemini-2.0-flash \
   --score
 
 # Combine scoring with export

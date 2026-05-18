@@ -1,6 +1,6 @@
-# assayer
+# Assayer
 
-Send a prompt to multiple language models in parallel and compare their outputs in the terminal. Useful for evaluating which model handles a given task better, measuring semantic similarity between responses, or running an LLM-as-judge evaluation — without leaving the shell.
+Send a prompt to multiple language models in parallel and compare their outputs in the terminal. Useful for evaluating which model handles a given task better, measuring semantic similarity between responses, or running an LLM-as-judge evaluation - without leaving the shell.
 
 ## Installation
 
@@ -16,13 +16,11 @@ pip install "assayer[score]"
 
 Python 3.11 or newer is required.
 
-> **Contributing?** See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, code style, and PR guidelines.
-
 ## Supported Providers
 
 - **OpenAI**: All GPT models.
-- **Anthropic**: Claude 4.5 models (Opus, Sonnet, Haiku).
-- **Google Gemini**: 1.5 Pro and Flash models.
+- **Anthropic**: Claude models (Opus 4.7, Sonnet 4.6, Haiku 4.5, and earlier).
+- **Google Gemini**: Gemini 2.x and 3.x models.
 - **Ollama**: Local models running on your machine.
 
 ## Configuration
@@ -57,11 +55,11 @@ assayer run "Explain recursion in one sentence." --models gpt-4o,claude-haiku-4-
 
 ## Commands
 
-### run
+### `run`
 
 ```bash
 assayer run "prompt" --models gpt-4o,claude-sonnet-4-5
-assayer run --prompt-file prompt.txt --models gpt-4o,ollama/llama3
+assayer run --prompt-file prompt.txt --models gpt-4o,ollama/llama3.2
 assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --score
 assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --judge gpt-4o --judge-criteria "clarity,brevity"
 assayer run "prompt" --models gpt-4o,claude-sonnet-4-5 --output results.json
@@ -81,8 +79,9 @@ assayer run "prompt with {var}" --models gpt-4o --var key=value
 | `--judge` | Model to use as judge |
 | `--judge-criteria` | Comma-separated criteria for the judge |
 | `--output` | Save results to `.json` or `.csv` |
+| `--timeout` | Per-model timeout in seconds (default: 30) |
 
-### models
+### `models`
 
 ```bash
 assayer models list               # list all supported model identifiers
@@ -90,7 +89,7 @@ assayer models check              # check which API keys are configured
 assayer models check ollama       # check if Ollama is running and list local models
 ```
 
-### config
+### `config`
 
 ```bash
 assayer config set OPENAI_API_KEY sk-...
@@ -154,3 +153,11 @@ If the judge call fails, a warning is printed to stderr and the run continues no
 ## Export
 
 `--output results.json` saves full results as JSON. `--output results.csv` saves as CSV. The file format is determined by the extension.
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, code style, and the PR process.
+
+## License
+
+MIT - see [LICENSE](LICENSE) for details.
