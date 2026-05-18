@@ -6,7 +6,15 @@ import pytest
 from assayer.exporter import export
 from assayer.models import ModelResult
 
-_EXPECTED_FIELDS = {"model", "output", "tokens_input", "tokens_output", "latency_seconds", "cost_usd", "error"}
+_EXPECTED_FIELDS = {
+    "model",
+    "output",
+    "tokens_input",
+    "tokens_output",
+    "latency_seconds",
+    "cost_usd",
+    "error",
+}
 
 
 def _results() -> list[ModelResult]:
@@ -91,6 +99,18 @@ def test_export_csv_has_all_headers(tmp_path):
     with path.open(encoding="utf-8") as f:
         reader = csv.DictReader(f)
         assert set(reader.fieldnames) == _EXPECTED_FIELDS
+
+
+def test_export_csv_empty_results_writes_headers(tmp_path):
+    path = tmp_path / "results.csv"
+    export([], str(path))
+
+    with path.open(encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        rows = list(reader)
+
+    assert set(reader.fieldnames or []) == _EXPECTED_FIELDS
+    assert rows == []
 
 
 def test_export_csv_case_insensitive_extension(tmp_path):
